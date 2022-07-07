@@ -11,29 +11,14 @@ import com.example.loansapp.domain.entities.User
 class AuthViewModel: ViewModel() {
     private var authUseCase = AuthenticationUseCase()
 
-    private var name = MutableLiveData<String>("")
-    private var password = MutableLiveData<String>("")
-    private var status = MutableLiveData<Status>(Status.NO_ACTION)
+    private var status = Status.NO_ACTION
 
 
-    fun loadStatus(login: String, password: String) {
+    fun loadStatus(login: String, password: String): Status {
         val user = User(login, password)
-        status.value = authUseCase.execute(user)
-    }
-
-    fun getName(): LiveData<String> {
-        return name
-    }
-
-    fun getPassword(): LiveData<String> {
-        return password
-    }
-
-    fun getStatus(): LiveData<Status> {
+        status = authUseCase.execute(user)
         return status
     }
-
-
 
 
 }

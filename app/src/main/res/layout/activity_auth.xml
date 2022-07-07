@@ -46,14 +46,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginTop="28dp"
-        android:text="ФИО"
+        android:text="Логин"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
@@ -74,7 +74,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogin" />
 
     <EditText
         android:id="@+id/editTextPassword"
