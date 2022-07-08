@@ -46,10 +46,16 @@ class AuthActivity : AppCompatActivity() {
                 val authIntent = Intent(this, PersonalCabinetActivity::class.java)
                 authIntent.putExtra("login", login)
 
+                authViewModel.setStatus(Status.NO_ACTION)
                 this.startActivity(authIntent)
             }
             if (status == Status.NOT_SUCCESSFUL) {
-                Toast.makeText(this, "Authorisation not successful", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Wrong login or password", Toast.LENGTH_LONG).show()
+                authViewModel.setStatus(Status.NO_ACTION)
+            }
+            if (status == Status.LOGIN_IS_EMPTY_ERROR) {
+                Toast.makeText(this, "Login should not be empty", Toast.LENGTH_LONG).show()
+                authViewModel.setStatus(Status.NO_ACTION)
             }
         }
 

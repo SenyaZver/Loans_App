@@ -3,12 +3,12 @@ package com.example.loansapp.data
 import com.example.loansapp.domain.entities.User
 
 class UserAuthRepository() {
-    private var usersList: ArrayList<User> = ArrayList<User>()
+    private var usersList: ArrayList<User> = ArrayList()
+    private var authDataProvider: AuthDataProvider
 
-
-    //temp solution for testing purposes
-    constructor(name: String, password: String) : this() {
-        usersList.add(User(name, password))
+    init {
+        authDataProvider = AuthDataProvider()
+        usersList = authDataProvider.getUsers()
     }
 
     fun findUser(user: User): Boolean {

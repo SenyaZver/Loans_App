@@ -22,9 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="  Название  "
+            android:text="  Чемодан с деньгами  "
             android:textColor="@color/black"
             android:textSize="26sp"
+            android:textColorHighlight="@color/purple_200"
             tools:layout_editor_absoluteX="110dp"
             tools:layout_editor_absoluteY="30dp" />
 

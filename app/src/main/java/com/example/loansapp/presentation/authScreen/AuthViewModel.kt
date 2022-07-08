@@ -15,9 +15,17 @@ class AuthViewModel: ViewModel() {
 
 
     fun loadStatus(login: String, password: String): Status {
+        if (login.isBlank()) {
+            status = Status.LOGIN_IS_EMPTY_ERROR
+            return status
+        }
         val user = User(login, password)
         status = authUseCase.execute(user)
         return status
+    }
+
+    fun setStatus(newStatus: Status) {
+        status = newStatus
     }
 
 

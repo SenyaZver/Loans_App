@@ -5,7 +5,7 @@ import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.domain.entities.User
 
 class AuthenticationUseCase {
-    private var userAuthRepository = UserAuthRepository("Arseny", "password")
+    private var userAuthRepository = UserAuthRepository()
 
 
     fun execute(user: User): Status {
