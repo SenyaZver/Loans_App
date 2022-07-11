@@ -1,13 +1,22 @@
 package com.example.loansapp.data
 
-import com.example.loansapp.domain.entities.User
+import com.example.loansapp.domain.entities.Account
+import com.example.loansapp.domain.entities.Status
 
 class AuthDataProvider {
 
-    //temp solution
-    fun getUsers(): ArrayList<User> {
-        var result = ArrayList<User>()
-        result.add(User("Arseny", "password"))
-        return result
+
+    fun getStatus(login: String, password: String): Status {
+        if (login.isBlank()) {
+            return Status.LOGIN_IS_EMPTY_ERROR
+        }
+
+        //temp solution
+        if (login == "Arseny" && password == "password") {
+            return Status.SUCCESSFUL
+        } else {
+            return Status.NOT_SUCCESSFUL
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.loansapp.presentation.personalCabinetScreen
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Loan
 
-class RecyclerViewAdapter(private val loansList: ArrayList<Loan>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
+class RecyclerViewAdapter(private var loansList: ArrayList<Loan>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val loanIdTextView: TextView = view.findViewById(R.id.loanIdTextView)
@@ -32,5 +33,11 @@ class RecyclerViewAdapter(private val loansList: ArrayList<Loan>) : RecyclerView
     }
 
     override fun getItemCount() = loansList.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateItems(newItems: ArrayList<Loan>) {
+        loansList = newItems
+        notifyDataSetChanged()
+    }
 
 }
