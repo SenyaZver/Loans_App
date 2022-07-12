@@ -20,15 +20,13 @@ import com.example.loansapp.presentation.loanDetailsScreen.LoanDetailsActivity
 class PersonalCabinetActivity : AppCompatActivity() {
     private lateinit var welcomeTextView: TextView
     private lateinit var loansList: RecyclerView
-    private var loans: ArrayList<Loan> = ArrayList()
 
-    private var chosenLoan: Loan? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_cabinet)
 
-        val login = intent.extras!!.getString("login")
+        val login = LoansApp.currentAccountRepository.getLogin()
 
 
         val personalCabinetViewModel: PersonalCabinetViewModel by viewModels {PersonalCabinetViewModelFactory(login!!)}
@@ -68,10 +66,6 @@ class PersonalCabinetActivity : AppCompatActivity() {
     }
 
 
-
-    fun startDetailsActivity(id: Long) {
-        val detailIntent = Intent(this, LoanDetailsActivity::class.java)
-    }
 }
 
 

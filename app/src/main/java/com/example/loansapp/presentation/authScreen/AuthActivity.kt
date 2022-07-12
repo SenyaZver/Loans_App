@@ -7,7 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.example.loansapp.LoansApp
 import com.example.loansapp.R
+import com.example.loansapp.domain.entities.Account
 import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.presentation.personalCabinetScreen.PersonalCabinetActivity
 
@@ -26,7 +28,7 @@ class AuthActivity : AppCompatActivity() {
         authButton = findViewById(R.id.authButton)
 
 
-        val authViewModel: AuthViewModel by viewModels()
+        val authViewModel: AuthViewModel by viewModels{AuthViewModelFactory(LoansApp.currentAccountRepository)}
 
 //        authViewModel.getStatus().observe(this, Observer<Status> { status ->
 //            when (status) {
@@ -49,6 +51,7 @@ class AuthActivity : AppCompatActivity() {
                     authIntent.putExtra("login", login)
 
                     authViewModel.setStatus(Status.NO_ACTION)
+
                     this.startActivity(authIntent)
                 }
                 Status.NOT_SUCCESSFUL -> {

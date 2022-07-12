@@ -39,7 +39,9 @@
             android:layout_marginTop="20sp"
             android:text="ID займа: "
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
         <TextView
             android:id="@+id/loanAmountTextView"
@@ -49,7 +51,9 @@
             android:layout_marginTop="20sp"
             android:text="Общая сумма займа: "
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
         <TextView
             android:id="@+id/loanAmountLeftTextView"
@@ -59,7 +63,9 @@
             android:layout_marginTop="20sp"
             android:text="Осталось выплатить: "
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
         <TextView
             android:id="@+id/loanRateTextView"
@@ -69,7 +75,9 @@
             android:layout_marginTop="20sp"
             android:text="Процентная ставка: "
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
 
         <TextView
@@ -80,7 +88,9 @@
             android:layout_marginTop="20sp"
             android:text="Дата начала: "
             android:textColor="@color/main_color"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
         <TextView
             android:id="@+id/loanExpDateTextView"
@@ -91,7 +101,9 @@
             android:text="Дата окончания: "
             android:textColor="@color/main_color"
             android:textSize="20sp"
-            android:layout_marginBottom="20sp"/>
+            android:layout_marginBottom="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"/>
 
     </LinearLayout>
 

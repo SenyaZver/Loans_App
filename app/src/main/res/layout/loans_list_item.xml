@@ -9,9 +9,10 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="370sp"
+        android:layout_width="340sp"
         android:layout_height="6sp"
         android:layout_marginStart="22sp"
+        android:layout_marginEnd="22sp"
         android:background="@color/main_color"
         android:fadingEdge="horizontal"
         app:layout_constraintStart_toStartOf="parent"
