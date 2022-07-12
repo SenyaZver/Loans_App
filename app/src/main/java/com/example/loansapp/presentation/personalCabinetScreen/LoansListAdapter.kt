@@ -5,16 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Loan
 
-class RecyclerViewAdapter(private var loansList: ArrayList<Loan>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val loanIdTextView: TextView = view.findViewById(R.id.loanIdTextView)
-        val amountTextView: TextView = view.findViewById(R.id.amountTextView)
-        val expirationDateTextView: TextView = view.findViewById(R.id.expirationDateTextView)
+
+
+class LoansListAdapter(
+    private var loansList: ArrayList<Loan>,
+    private var chosenLoan: MutableLiveData<Loan?>
+) : RecyclerView.Adapter<LoansListAdapter.ViewHolder>(){
+
+    class ViewHolder(itemView: View, private var chosenLoan: MutableLiveData<Loan?>): RecyclerView.ViewHolder(itemView) {
+        val loanIdTextView: TextView = itemView.findViewById(R.id.loanIdTextView)
+        val amountTextView: TextView = itemView.findViewById(R.id.amountTextView)
+        val expirationDateTextView: TextView = itemView.findViewById(R.id.expirationDateTextView)
+
+        fun bindListener(loan: Loan) {
+            itemView.setOnClickListener {
+                chosenLoan.value = loan
+            }
+        }
     }
 
 
@@ -23,13 +36,15 @@ class RecyclerViewAdapter(private var loansList: ArrayList<Loan>) : RecyclerView
         viewType: Int
     ): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.loans_list_item, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(itemView, chosenLoan)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.loanIdTextView.text = loansList[position].id.toString()
         holder.amountTextView.text = loansList[position].amount_left.toString()
         holder.expirationDateTextView.text = loansList[position].expiration_date
+        val loan = loansList[position]
+        holder.bindListener(loan)
     }
 
     override fun getItemCount() = loansList.size
