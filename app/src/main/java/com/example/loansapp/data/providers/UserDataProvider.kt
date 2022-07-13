@@ -1,22 +1,36 @@
 package com.example.loansapp.data.providers
 
+import com.example.loansapp.LoansApp
+import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.domain.entities.User
+import com.example.loansapp.domain.responses.GetUserResponse
 
-class UserDataProvider(login:String) {
+class UserDataProvider(private val id: Long) {
+
+    fun provide(): Status {
+
+        val response = getResponse(id)
+        if (response.user!=null) {
+            LoansApp.currentAccountRepository.setUser(response.user)
+            return Status.SUCCESSFUL
+        }
+
+        return Status.NOT_SUCCESSFUL
+    }
 
     //temp solution
-    fun provide(): User {
-        val user = User(1,
+    private fun getResponse(id:Long): GetUserResponse {
+        val user = User(
+            1,
             "Arseny",
             "Stuchinsky",
             null,
             10000,
             1255,
             848549,
-            "89137903071",
-            "sashko1337@mail.ru",
             null)
-        return user
+
+        return GetUserResponse(user, 200)
     }
 
 }

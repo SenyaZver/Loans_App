@@ -4,7 +4,6 @@ package com.example.loansapp.presentation.personalCabinetScreen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -26,21 +25,14 @@ class PersonalCabinetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_cabinet)
 
-        val login = LoansApp.currentAccountRepository.getLogin()
-
-
-        val personalCabinetViewModel: PersonalCabinetViewModel by viewModels {PersonalCabinetViewModelFactory(login!!)}
-
-        welcomeTextView = findViewById(R.id.welcomeTextView)
-        welcomeTextView.text = "Привет, $login"
+        val personalCabinetViewModel: PersonalCabinetViewModel by viewModels()
 
 
         loansList = findViewById(R.id.recyclerView)
         loansList.layoutManager = LinearLayoutManager(this)
-
-
         val adapter = personalCabinetViewModel.getAdapter()
         loansList.adapter = adapter
+
 
         personalCabinetViewModel.getChosenLoan().observe(this, Observer<Loan?> {chosenLoan ->
             if (chosenLoan!= null) {
@@ -51,16 +43,12 @@ class PersonalCabinetActivity : AppCompatActivity() {
 
                 this.startActivity(detailsIntent)
             }
-
         })
 
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->
             adapter.updateItems(list)
         })
 
-        personalCabinetViewModel.getUser().observe(this, Observer<User> { user ->
-
-        })
 
 
     }

@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import com.example.loansapp.LoansApp
 import com.example.loansapp.R
 import com.example.loansapp.data.ChosenLoanRepository
+import com.example.loansapp.presentation.payLoanScreen.PayLoanActivity
 
 class LoanDetailsActivity : AppCompatActivity() {
     private lateinit var loanNameTextView: TextView
@@ -40,6 +41,7 @@ class LoanDetailsActivity : AppCompatActivity() {
 
 
     fun init(viewModel : LoanDetailViewModel) {
+        payButton = findViewById(R.id.detailsPayButton)
         loanNameTextView = findViewById(R.id.loanNameTextView)
         loanIdTextView = findViewById(R.id.loanIdTextView)
         loanAmountTextView = findViewById(R.id.loanAmountTextView)
@@ -55,10 +57,10 @@ class LoanDetailsActivity : AppCompatActivity() {
         viewModel.getId().observe(this, Observer<Long> { id ->
             loanIdTextView.text = "ID займа: " + id.toString()
         })
-        viewModel.getAmount().observe(this, Observer<Double> { amount ->
+        viewModel.getAmount().observe(this, Observer<Int> { amount ->
             loanAmountTextView.text = "Общая сумма: " + amount.toString() + " руб."
         })
-        viewModel.getAmountLeft().observe(this, Observer<Double> { amountLeft ->
+        viewModel.getAmountLeft().observe(this, Observer<Int> { amountLeft ->
             loanAmountLeftTextView.text = "Осталось выплатить: " + amountLeft.toString() + " руб."
         })
         viewModel.getRate().observe(this, Observer<Double> { rate ->
@@ -71,16 +73,10 @@ class LoanDetailsActivity : AppCompatActivity() {
             loanExpDateTextView.text = "Дата окончания: " + date
         })
 
-
-//        if (loan!=null) {
-//            loanNameTextView.text = "Название займа: " + loan.name
-//            loanIdTextView.text = "ID займа: " + loan.id.toString()
-//            loanAmountTextView.text = "Общая сумма: " + loan.amount.toString() + " руб."
-//            loanAmountLeftTextView.text = "Осталось выплатить: " + loan.amount_left.toString() + " руб."
-//            loanRateTextView.text = "Процентная ставка: " + loan.rate.toString() + "%"
-//            loanStartDateTextView.text = "Дата начала: " + loan.start_date
-//            loanExpDateTextView.text = "Дата окончания: " + loan.expiration_date
-//        }
+        payButton.setOnClickListener {
+            val intent = Intent(this, PayLoanActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

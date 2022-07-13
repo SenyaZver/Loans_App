@@ -5,10 +5,8 @@ data class User (
     val name: String,
     val surname: String,
     val patronymic: String?,
-    val balance: Int,
+    var balance: Int,
     val passport_series: Int,
     val passport_number: Int,
-    val telephone: String,
-    val email: String,
     val pts: String?
         )

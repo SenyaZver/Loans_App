@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.loansapp.LoansApp
 import com.example.loansapp.R
-import com.example.loansapp.domain.entities.Account
 import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.presentation.personalCabinetScreen.PersonalCabinetActivity
 
@@ -28,15 +27,8 @@ class AuthActivity : AppCompatActivity() {
         authButton = findViewById(R.id.authButton)
 
 
-        val authViewModel: AuthViewModel by viewModels{AuthViewModelFactory(LoansApp.currentAccountRepository)}
+        val authViewModel: AuthViewModel by viewModels()
 
-//        authViewModel.getStatus().observe(this, Observer<Status> { status ->
-//            when (status) {
-//                Status.SUCCESSFUL -> Toast.makeText(this, "Authorisation successful", Toast.LENGTH_SHORT).show()
-//                Status.NOT_SUCCESSFUL -> Toast.makeText(this, "Authorisation not successful", Toast.LENGTH_LONG).show()
-//                else -> {}
-//            }
-//        })
 
         authButton.setOnClickListener {
             val login = loginEditText.text.toString()
@@ -58,7 +50,7 @@ class AuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Wrong login or password", Toast.LENGTH_LONG).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }
-                Status.LOGIN_IS_EMPTY_ERROR -> {
+                Status.PHONE_IS_WRONG -> {
                     Toast.makeText(this, "Login should not be empty", Toast.LENGTH_LONG).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }

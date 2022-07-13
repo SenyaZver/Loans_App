@@ -9,7 +9,7 @@ import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.domain.entities.Account
 import kotlinx.coroutines.launch
 
-class AuthViewModel(accountRepository: CurrentAccountRepository): ViewModel() {
+class AuthViewModel(): ViewModel() {
     private var authUseCase = AuthenticationUseCase()
 
     private var status = Status.NO_ACTION
@@ -17,10 +17,8 @@ class AuthViewModel(accountRepository: CurrentAccountRepository): ViewModel() {
 
     fun loadStatus(login: String, password: String): Status {
         viewModelScope.launch {
-            val user = Account(login, password)
-            status = authUseCase.execute(user)
+            status = authUseCase.execute(login, password)
         }
-        LoansApp.currentAccountRepository.setAccount(Account(login, password))
 
         return status
     }

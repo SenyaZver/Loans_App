@@ -108,7 +108,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/detailsPayButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginStart="158dp"

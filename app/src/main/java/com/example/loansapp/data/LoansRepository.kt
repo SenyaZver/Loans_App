@@ -3,17 +3,19 @@ package com.example.loansapp.data
 import com.example.loansapp.data.providers.LoansDataProvider
 import com.example.loansapp.domain.entities.Loan
 
-class LoansRepository (login: String) {
-    private var loansList: ArrayList<Loan>
-    private var loansDataProvider = LoansDataProvider(login)
+class LoansRepository {
+    private var loansList = ArrayList<Loan>()
 
-
-    init {
-        loansList = loansDataProvider.provide()
+    fun setLoansList(newList: ArrayList<Loan>) {
+        loansList = newList
     }
 
     fun getLoansList(): ArrayList<Loan> {
         return loansList
+    }
+
+    private fun sortLoansList() {
+        loansList = loansList.sortedWith(compareBy({it.amount_left})) as ArrayList<Loan>
     }
 
 }
