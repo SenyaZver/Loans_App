@@ -1,5 +1,6 @@
 package com.example.loansapp.presentation.personalCabinetScreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,26 +13,33 @@ import com.example.loansapp.domain.entities.User
 import kotlinx.coroutines.launch
 
 class PersonalCabinetViewModel(): ViewModel() {
-    private var loans : MutableLiveData<ArrayList<Loan>>
+    private lateinit var loans : MutableLiveData<ArrayList<Loan>>
 
     private lateinit var loadAllLoansUseCase: LoadAllLoansUseCase
     private lateinit var loadUserDataUseCase: LoadUserDataUseCase
-    private var adapter: LoansListAdapter
+    private var adapter: LoansListAdapter? = null
     private var chosenLoan = MutableLiveData<Loan?>()
 
 
     init {
-        loans = MutableLiveData<ArrayList<Loan>>()
-        loadLoans()
-        loadUser()
+        viewModelScope.launch {
+            loans = MutableLiveData<ArrayList<Loan>>()
+            loadLoans()
+            loadUser()
 
-        loans.value = LoansApp.loansRepository.getLoansList()
+            LoansApp.loansRepository.getLoansList().collect {
+                loans.value = it
+                adapter?.updateItems(it)
+            }
+
+            adapter = loans.value?.let { LoansListAdapter(it, chosenLoan) }!!
 
 
-        adapter = loans.value?.let { LoansListAdapter(it, chosenLoan) }!!
+        }
     }
 
-    fun getAdapter(): LoansListAdapter {
+
+    fun getAdapter(): LoansListAdapter? {
         return adapter
     }
 
@@ -48,18 +56,12 @@ class PersonalCabinetViewModel(): ViewModel() {
     }
 
     private fun loadUser() {
-        viewModelScope.launch {
-            loadUserDataUseCase = LoadUserDataUseCase(LoansApp.currentAccountRepository.getId()!!)
-            loadUserDataUseCase.execute()
-        }
-
+        loadUserDataUseCase = LoadUserDataUseCase(LoansApp.currentAccountRepository.getId()!!)
+        loadUserDataUseCase.execute()
     }
     private fun loadLoans() {
-        viewModelScope.launch {
-            loadAllLoansUseCase = LoadAllLoansUseCase(LoansApp.currentAccountRepository.getId()!!)
-            loadAllLoansUseCase.execute()
-        }
-
+        loadAllLoansUseCase = LoadAllLoansUseCase(LoansApp.currentAccountRepository.getId()!!)
+        loadAllLoansUseCase.execute()
     }
 
 }

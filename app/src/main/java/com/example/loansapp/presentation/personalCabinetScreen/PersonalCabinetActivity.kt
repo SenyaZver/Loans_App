@@ -4,7 +4,9 @@ package com.example.loansapp.presentation.personalCabinetScreen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +29,6 @@ class PersonalCabinetActivity : AppCompatActivity() {
 
         val personalCabinetViewModel: PersonalCabinetViewModel by viewModels()
 
-
         loansList = findViewById(R.id.recyclerView)
         loansList.layoutManager = LinearLayoutManager(this)
         val adapter = personalCabinetViewModel.getAdapter()
@@ -46,7 +47,7 @@ class PersonalCabinetActivity : AppCompatActivity() {
         })
 
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->
-            adapter.updateItems(list)
+            adapter?.updateItems(list)
         })
 
 

@@ -38,7 +38,7 @@ class AuthActivity : AppCompatActivity() {
 
             when(status) {
                 Status.SUCCESSFUL -> {
-                    Toast.makeText(this, "Authorisation successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Authorization successful", Toast.LENGTH_SHORT).show()
                     val authIntent = Intent(this, PersonalCabinetActivity::class.java)
                     authIntent.putExtra("login", login)
 
@@ -47,11 +47,11 @@ class AuthActivity : AppCompatActivity() {
                     this.startActivity(authIntent)
                 }
                 Status.NOT_SUCCESSFUL -> {
-                    Toast.makeText(this, "Wrong login or password", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Wrong phone or password", Toast.LENGTH_LONG).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }
                 Status.PHONE_IS_WRONG -> {
-                    Toast.makeText(this, "Login should not be empty", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Incorrect phone number", Toast.LENGTH_LONG).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }
 

@@ -11,8 +11,6 @@ import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Loan
 
 
-
-
 class LoansListAdapter(
     private var loansList: ArrayList<Loan>,
     private var chosenLoan: MutableLiveData<Loan?>
