@@ -16,7 +16,11 @@ class LoansRepository {
 //        sortLoansList()
     }
 
-    fun getLoansList(): Flow<ArrayList<Loan>> = flow {
+    fun getLoansList() : ArrayList<Loan> {
+        return loansList
+    }
+
+    fun getLoansListFlow(): Flow<ArrayList<Loan>> = flow {
         emit(loansList)
     }
 

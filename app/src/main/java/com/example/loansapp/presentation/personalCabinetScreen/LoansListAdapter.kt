@@ -1,29 +1,32 @@
 package com.example.loansapp.presentation.personalCabinetScreen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.loansapp.LoansApp
 import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Loan
 
 
 class LoansListAdapter(
     private var loansList: ArrayList<Loan>,
-    private var chosenLoan: MutableLiveData<Loan?>
+
 ) : RecyclerView.Adapter<LoansListAdapter.ViewHolder>(){
 
-    class ViewHolder(itemView: View, private var chosenLoan: MutableLiveData<Loan?>): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val loanIdTextView: TextView = itemView.findViewById(R.id.loanIdTextView)
         val amountTextView: TextView = itemView.findViewById(R.id.amountTextView)
         val expirationDateTextView: TextView = itemView.findViewById(R.id.expirationDateTextView)
 
         fun bindListener(loan: Loan) {
             itemView.setOnClickListener {
-                chosenLoan.value = loan
+                Log.d("debugAdapter", LoansApp.chosenLoanRepository.getChosenLoan()?.amount_left.toString())
+                LoansApp.chosenLoanRepository.setChosenLoan(loan)
             }
         }
     }
@@ -34,7 +37,7 @@ class LoansListAdapter(
         viewType: Int
     ): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.loans_list_item, parent, false)
-        return ViewHolder(itemView, chosenLoan)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
