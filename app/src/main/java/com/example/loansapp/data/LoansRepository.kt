@@ -9,26 +9,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 
 class LoansRepository {
-//    private var loansList = MutableStateFlow(ArrayList<Loan>())
-    private var loansList = ArrayList<Loan>()
+    private var loansList = MutableStateFlow(ArrayList<Loan>())
+
 
 
     fun setLoansList(newList: ArrayList<Loan>) {
-        loansList = newList
+        loansList.value = newList
 //        sortLoansList()
     }
 
     fun getLoansList(): ArrayList<Loan>  {
+        return loansList.value
+    }
+
+    fun getLoansListFlow(): MutableStateFlow<ArrayList<Loan>> {
         return loansList
     }
 
-//    fun getLoansListFlow(): MutableStateFlow<ArrayList<Loan>> {
-//        return loansList
-//    }
 
-
-//    private fun sortLoansList() {
-//        loansList.value = loansList.value.sortedWith(compareBy({it.amount_left})) as ArrayList<Loan>
-//    }
+    private fun sortLoansList() {
+        loansList.value = loansList.value.sortedWith(compareBy({it.amount_left})) as ArrayList<Loan>
+    }
 
 }

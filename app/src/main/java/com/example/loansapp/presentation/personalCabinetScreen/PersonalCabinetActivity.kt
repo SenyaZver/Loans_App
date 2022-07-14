@@ -45,19 +45,9 @@ class PersonalCabinetActivity : AppCompatActivity() {
         balanceTextView.text = "Баланс: " + LoansApp.currentAccountRepository.getUser().balance.toString() + " руб."
 
 
-        personalCabinetViewModel.getChosenLoan().observe(this, Observer<Loan?> {chosenLoan ->
-            if (chosenLoan!= null) {
-                val detailsIntent = Intent(this, LoanDetailsActivity::class.java)
-
-                personalCabinetViewModel.setChosenLoan(null)
-                LoansApp.chosenLoanRepository.setChosenLoan(chosenLoan)
-
-                this.startActivity(detailsIntent)
-            }
-        })
 
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->
-            adapter?.updateItems(list)
+            adapter.updateItems(list)
         })
 
 
