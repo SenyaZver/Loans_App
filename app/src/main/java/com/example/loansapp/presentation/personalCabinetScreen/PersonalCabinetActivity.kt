@@ -16,6 +16,7 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.domain.entities.Loan
 import com.example.loansapp.domain.entities.User
 import com.example.loansapp.presentation.addLoanScreen.AddLoanActivity
+import com.example.loansapp.presentation.balanceOperationsScreen.BalanceOperationsActivity
 import com.example.loansapp.presentation.loanDetailsScreen.LoanDetailsActivity
 
 
@@ -24,6 +25,7 @@ class PersonalCabinetActivity : AppCompatActivity() {
     private lateinit var loansList: RecyclerView
     private lateinit var balanceTextView: TextView
     private lateinit var addLoanScreenButton: Button
+    private lateinit var balanceButton: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +60,12 @@ class PersonalCabinetActivity : AppCompatActivity() {
         addLoanScreenButton = findViewById(R.id.addLoanButton)
         addLoanScreenButton.setOnClickListener {
             val intent = Intent(this, AddLoanActivity::class.java)
+            startActivity(intent)
+        }
+
+        balanceButton = findViewById(R.id.balanceButton)
+        balanceButton.setOnClickListener {
+            val intent = Intent(this, BalanceOperationsActivity::class.java)
             startActivity(intent)
         }
 

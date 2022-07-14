@@ -109,18 +109,17 @@
 
     <Button
         android:id="@+id/detailsPayButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="56dp"
-        android:layout_marginStart="158dp"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="157dp"
         android:layout_marginBottom="205dp"
         android:text="Оплата"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+
         android:backgroundTint="@color/white"
         android:textColor="@color/main_color"
         app:strokeColor="@color/main_color"
