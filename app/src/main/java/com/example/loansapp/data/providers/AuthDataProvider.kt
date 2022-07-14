@@ -25,6 +25,8 @@ class AuthDataProvider {
 
     }
 
+
+
     //temp solution
     private fun getResponse(phone: String, password: String): AuthResponse {
         if (phone == "89137903071" && password == "password") {

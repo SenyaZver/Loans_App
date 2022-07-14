@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.loansapp.LoansApp
 import com.example.loansapp.domain.entities.Loan
 import com.example.loansapp.domain.entities.User
+import com.example.loansapp.presentation.addLoanScreen.AddLoanActivity
 import com.example.loansapp.presentation.loanDetailsScreen.LoanDetailsActivity
 
 
@@ -22,6 +23,7 @@ class PersonalCabinetActivity : AppCompatActivity() {
     private lateinit var welcomeTextView: TextView
     private lateinit var loansList: RecyclerView
     private lateinit var balanceTextView: TextView
+    private lateinit var addLoanScreenButton: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +53,13 @@ class PersonalCabinetActivity : AppCompatActivity() {
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->
             adapter.updateItems(list)
         })
+
+
+        addLoanScreenButton = findViewById(R.id.addLoanButton)
+        addLoanScreenButton.setOnClickListener {
+            val intent = Intent(this, AddLoanActivity::class.java)
+            startActivity(intent)
+        }
 
 
 

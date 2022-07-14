@@ -16,7 +16,7 @@ class LoansApp: Application() {
 
 
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost/")
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

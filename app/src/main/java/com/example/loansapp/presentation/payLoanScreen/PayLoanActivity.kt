@@ -36,7 +36,6 @@ class PayLoanActivity : AppCompatActivity() {
 
         payLoanViewModel.getStatus().observe(this) { ready ->
             if (ready == true) {
-
                 val intent = Intent(this, PersonalCabinetActivity::class.java)
                 startActivity(intent)
             }
