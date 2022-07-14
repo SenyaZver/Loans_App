@@ -5,9 +5,11 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.data.providers.LoansDataProvider
 import com.example.loansapp.domain.entities.Loan
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 
 class LoansRepository {
+//    private var loansList = MutableStateFlow(ArrayList<Loan>())
     private var loansList = ArrayList<Loan>()
 
 
@@ -16,13 +18,17 @@ class LoansRepository {
 //        sortLoansList()
     }
 
-    fun getLoansList(): Flow<ArrayList<Loan>> = flow {
-        emit(loansList)
+    fun getLoansList(): ArrayList<Loan>  {
+        return loansList
     }
 
+//    fun getLoansListFlow(): MutableStateFlow<ArrayList<Loan>> {
+//        return loansList
+//    }
 
-    private fun sortLoansList() {
-        loansList = loansList.sortedWith(compareBy({it.amount_left})) as ArrayList<Loan>
-    }
+
+//    private fun sortLoansList() {
+//        loansList.value = loansList.value.sortedWith(compareBy({it.amount_left})) as ArrayList<Loan>
+//    }
 
 }

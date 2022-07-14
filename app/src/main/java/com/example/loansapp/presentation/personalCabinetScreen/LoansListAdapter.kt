@@ -13,19 +13,14 @@ import com.example.loansapp.domain.entities.Loan
 
 class LoansListAdapter(
     private var loansList: ArrayList<Loan>,
-    private var chosenLoan: MutableLiveData<Loan?>
+    private val loanClickListener: (Loan) -> Unit
 ) : RecyclerView.Adapter<LoansListAdapter.ViewHolder>(){
 
-    class ViewHolder(itemView: View, private var chosenLoan: MutableLiveData<Loan?>): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val loanIdTextView: TextView = itemView.findViewById(R.id.loanIdTextView)
         val amountTextView: TextView = itemView.findViewById(R.id.amountTextView)
         val expirationDateTextView: TextView = itemView.findViewById(R.id.expirationDateTextView)
 
-        fun bindListener(loan: Loan) {
-            itemView.setOnClickListener {
-                chosenLoan.value = loan
-            }
-        }
     }
 
 
@@ -34,7 +29,7 @@ class LoansListAdapter(
         viewType: Int
     ): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.loans_list_item, parent, false)
-        return ViewHolder(itemView, chosenLoan)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -42,7 +37,10 @@ class LoansListAdapter(
         holder.amountTextView.text = loansList[position].amount_left.toString()
         holder.expirationDateTextView.text = loansList[position].expiration_date
         val loan = loansList[position]
-        holder.bindListener(loan)
+
+        holder.itemView.setOnClickListener {
+            loanClickListener(loan)
+        }
     }
 
     override fun getItemCount() = loansList.size

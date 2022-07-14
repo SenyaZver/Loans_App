@@ -21,6 +21,7 @@ import com.example.loansapp.presentation.loanDetailsScreen.LoanDetailsActivity
 class PersonalCabinetActivity : AppCompatActivity() {
     private lateinit var welcomeTextView: TextView
     private lateinit var loansList: RecyclerView
+    private lateinit var balanceTextView: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +32,17 @@ class PersonalCabinetActivity : AppCompatActivity() {
 
         loansList = findViewById(R.id.recyclerView)
         loansList.layoutManager = LinearLayoutManager(this)
-        val adapter = personalCabinetViewModel.getAdapter()
+
+        val adapter = LoansListAdapter (ArrayList<Loan>()) { it ->
+            personalCabinetViewModel.loanItemClicked(
+                it
+            )
+        }
         loansList.adapter = adapter
+        personalCabinetViewModel.loanClickEvent.observe(this, Observer(::loanClicked))
+
+        balanceTextView = findViewById(R.id.balanceTextView)
+        balanceTextView.text = "Баланс: " + LoansApp.currentAccountRepository.getUser().balance.toString() + " руб."
 
 
         personalCabinetViewModel.getChosenLoan().observe(this, Observer<Loan?> {chosenLoan ->
@@ -52,6 +62,15 @@ class PersonalCabinetActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    private fun loanClicked(loan: Loan) {
+        val detailsIntent = Intent(this, LoanDetailsActivity::class.java)
+
+        LoansApp.chosenLoanRepository.setChosenLoan(loan)
+
+        this.startActivity(detailsIntent)
     }
 
 

@@ -9,7 +9,7 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.domain.LoadAllLoansUseCase
 import com.example.loansapp.domain.LoadUserDataUseCase
 import com.example.loansapp.domain.entities.Loan
-import com.example.loansapp.domain.entities.User
+import com.example.loansapp.presentation.personalCabinetScreen.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 class PersonalCabinetViewModel(): ViewModel() {
@@ -17,8 +17,10 @@ class PersonalCabinetViewModel(): ViewModel() {
 
     private lateinit var loadAllLoansUseCase: LoadAllLoansUseCase
     private lateinit var loadUserDataUseCase: LoadUserDataUseCase
-    private var adapter: LoansListAdapter? = null
     private var chosenLoan = MutableLiveData<Loan?>()
+
+
+    val loanClickEvent = SingleLiveEvent<Loan>()
 
 
     init {
@@ -27,21 +29,25 @@ class PersonalCabinetViewModel(): ViewModel() {
             loadLoans()
             loadUser()
 
-            LoansApp.loansRepository.getLoansList().collect {
-                loans.value = it
-                adapter?.updateItems(it)
-            }
-
-            adapter = loans.value?.let { LoansListAdapter(it, chosenLoan) }!!
+            Log.d("debug1", LoansApp.loansRepository.getLoansList()[1].amount_left.toString())
+            Log.d("debug1", loans.value?.get(1)?.amount_left.toString())
 
 
+            loans.value = LoansApp.loansRepository.getLoansList()
+
+
+//            LoansApp.loansRepository.getLoansListFlow().collect {
+//                loans.value = it
+//                adapter?.updateItems(it)
+//            }
         }
     }
 
 
-    fun getAdapter(): LoansListAdapter? {
-        return adapter
+    fun loanItemClicked(loan: Loan) {
+        loanClickEvent(loan)
     }
+
 
     fun getLoans(): LiveData<ArrayList<Loan>> {
         return loans
