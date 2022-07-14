@@ -42,9 +42,11 @@ class PersonalCabinetActivity : AppCompatActivity() {
         personalCabinetViewModel.loanClickEvent.observe(this, Observer(::loanClicked))
 
         balanceTextView = findViewById(R.id.balanceTextView)
-        balanceTextView.text = "Баланс: " + LoansApp.currentAccountRepository.getUser().balance.toString() + " руб."
 
 
+        personalCabinetViewModel.getUser().observe(this, Observer<User> { user->
+            balanceTextView.text = "Баланс: " + user.balance.toString() + " руб."
+        })
 
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->
             adapter.updateItems(list)

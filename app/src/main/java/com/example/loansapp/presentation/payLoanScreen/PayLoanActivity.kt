@@ -1,5 +1,6 @@
 package com.example.loansapp.presentation.payLoanScreen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.text.isDigitsOnly
 import com.example.loansapp.LoansApp
 import com.example.loansapp.R
+import com.example.loansapp.presentation.personalCabinetScreen.PersonalCabinetActivity
 
 class PayLoanActivity : AppCompatActivity() {
     private lateinit var payEditText: EditText
@@ -18,7 +20,6 @@ class PayLoanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_loan)
 
-        Log.d("debug", "roflan")
 
         payEditText = findViewById(R.id.payEditText)
         payButton = findViewById(R.id.payButton)
@@ -35,8 +36,9 @@ class PayLoanActivity : AppCompatActivity() {
 
         payLoanViewModel.getStatus().observe(this) { ready ->
             if (ready == true) {
-                Log.d("debug2", LoansApp.chosenLoanRepository.getChosenLoan()?.amount_left.toString())
-                finish()
+
+                val intent = Intent(this, PersonalCabinetActivity::class.java)
+                startActivity(intent)
             }
         }
 

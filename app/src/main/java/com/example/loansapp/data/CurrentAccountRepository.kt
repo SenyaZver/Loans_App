@@ -2,18 +2,22 @@ package com.example.loansapp.data
 
 import com.example.loansapp.domain.entities.Account
 import com.example.loansapp.domain.entities.User
+import kotlinx.coroutines.flow.MutableStateFlow
 
 
 class CurrentAccountRepository {
     private var account : Account? = null
-    private var user: User? = null
+    private var user = MutableStateFlow(User(-1,"","", null,0, 0, 0,null))
 
-
-    fun setUser(newUser: User) {
-        user = newUser
+    fun getUserFlow() : MutableStateFlow<User> {
+        return user
     }
+    fun setUser(newUser: User) {
+        user.value = newUser
+    }
+
     fun getUser() : User {
-        return user as User
+        return user.value
     }
 
     fun getId(): Long?{

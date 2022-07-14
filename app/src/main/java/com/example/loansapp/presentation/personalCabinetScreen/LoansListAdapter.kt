@@ -17,7 +17,7 @@ class LoansListAdapter(
 ) : RecyclerView.Adapter<LoansListAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val loanIdTextView: TextView = itemView.findViewById(R.id.loanIdTextView)
+        val loanNameTextView: TextView = itemView.findViewById(R.id.loanIdTextView)
         val amountTextView: TextView = itemView.findViewById(R.id.amountTextView)
         val expirationDateTextView: TextView = itemView.findViewById(R.id.expirationDateTextView)
 
@@ -33,7 +33,7 @@ class LoansListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.loanIdTextView.text = loansList[position].id.toString()
+        holder.loanNameTextView.text = loansList[position].name
         holder.amountTextView.text = loansList[position].amount_left.toString()
         holder.expirationDateTextView.text = loansList[position].expiration_date
         val loan = loansList[position]

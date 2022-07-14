@@ -6,6 +6,7 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.domain.LoadAllLoansUseCase
 import com.example.loansapp.domain.LoadUserDataUseCase
 import com.example.loansapp.domain.entities.Loan
+import com.example.loansapp.domain.entities.User
 import com.example.loansapp.presentation.personalCabinetScreen.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
@@ -19,9 +20,14 @@ class PersonalCabinetViewModel(): ViewModel() {
 
 
     init {
+
+        //this id check is, like, extra bad, but i have so little time :(
+
         viewModelScope.launch {
-            loadLoans()
-            loadUser()
+            if (LoansApp.currentAccountRepository.getUser().id < 0) {
+                loadLoans()
+                loadUser()
+            }
         }
     }
 
@@ -30,6 +36,9 @@ class PersonalCabinetViewModel(): ViewModel() {
         loanClickEvent(loan)
     }
 
+    fun getUser(): LiveData<User> {
+        return LoansApp.currentAccountRepository.getUserFlow().asLiveData()
+    }
 
     fun getLoans(): LiveData<ArrayList<Loan>> {
         return LoansApp.loansRepository.getLoansListFlow().asLiveData()

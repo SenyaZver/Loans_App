@@ -27,7 +27,7 @@ class LoansDataProvider(private val id: Long){
 
         loansList.add(Loan(
             1,
-            "1012",
+            "Первый займ",
             5000,
             4000,
             10.0,
@@ -35,7 +35,7 @@ class LoansDataProvider(private val id: Long){
             "31-12-2000"))
         loansList.add(Loan(
             2,
-            "1122",
+            "Второй займ",
             5000,
             4060,
             13.0,
@@ -43,7 +43,7 @@ class LoansDataProvider(private val id: Long){
             "11-12-2001"))
         loansList.add(Loan(
             3,
-            "1521",
+            "третий займ",
             5780,
             4800,
             15.0,

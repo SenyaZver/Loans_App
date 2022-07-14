@@ -8,6 +8,6 @@ class LoanDetailsViewModelFactory(private var repository: ChosenLoanRepository,
                                   private var login:String) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoanDetailViewModel(repository, login) as T
+        return LoanDetailViewModel() as T
     }
 }
