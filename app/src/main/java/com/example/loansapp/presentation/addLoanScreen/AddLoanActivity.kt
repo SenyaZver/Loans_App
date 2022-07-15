@@ -30,9 +30,21 @@ class AddLoanActivity : AppCompatActivity() {
 
         init()
 
+
+
+        //that's kinda meh, same as payLoanActivity
+        addLoanViewModel.getStatus().observe(this, Observer {ready ->
+            if (ready == true) {
+                val intent = Intent(this, PersonalCabinetActivity::class.java)
+                startActivity(intent)
+            }
+
+        })
+
+
         calculateAmountButton.setOnClickListener {
             val amount = (amountEditText.text.toString().toDouble()*1.12).toInt()
-            calculatedAmountTextView.text = amount.toString()
+            calculatedAmountTextView.text = "К выплате: " + amount.toString()
 
         }
 
@@ -51,16 +63,6 @@ class AddLoanActivity : AppCompatActivity() {
 
             addLoanViewModel.addLoan(tempLoan)
         }
-
-
-        //that's kinda meh, same as payLoanActivity
-        addLoanViewModel.getStatus().observe(this, Observer {ready ->
-            if (ready == true) {
-                val intent = Intent(this, PersonalCabinetActivity::class.java)
-                startActivity(intent)
-            }
-
-        })
 
 
     }

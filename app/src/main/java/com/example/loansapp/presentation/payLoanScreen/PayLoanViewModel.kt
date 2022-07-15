@@ -6,34 +6,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.loansapp.LoansApp
+import com.example.loansapp.domain.UseCases.PayLoanUseCase
 import com.example.loansapp.domain.entities.Loan
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class PayLoanViewModel: ViewModel() {
     private var ready = MutableLiveData<Boolean>(false)
+    private lateinit var payLoanUseCase: PayLoanUseCase
 
     //TODO rework with UseCases
     //temp solution
     fun payLoan(payment: Int) {
 
         viewModelScope.launch {
-            val amountLeft = LoansApp.chosenLoanRepository.getChosenLoan().amount_left
-            var finalPayment = payment
-            if (payment > amountLeft) {
-                finalPayment = amountLeft
-            }
-
-
-            //transactions
-            LoansApp.chosenLoanRepository.getChosenLoan().amount_left = amountLeft - finalPayment
-
-
-            LoansApp.currentAccountRepository.getUser().balance =
-                LoansApp.currentAccountRepository.getUser().balance - finalPayment
+            payLoanUseCase = PayLoanUseCase()
+            payLoanUseCase.execute(payment)
+            ready.value = true
         }
 
-        ready.value = true
 
     }
 

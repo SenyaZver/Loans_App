@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ems="8"
+            android:inputType="number"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck">
 

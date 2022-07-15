@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:ems="8"
             android:minHeight="48dp"
+            android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck">
 
         </EditText>

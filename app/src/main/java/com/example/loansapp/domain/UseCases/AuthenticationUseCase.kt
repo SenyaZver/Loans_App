@@ -1,4 +1,4 @@
-package com.example.loansapp.domain
+package com.example.loansapp.domain.UseCases
 
 import com.example.loansapp.LoansApp
 import com.example.loansapp.data.providers.AuthDataProvider

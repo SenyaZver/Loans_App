@@ -11,6 +11,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface LoanApi {
+    //TODO finish api
+    //can't test it because the server is not hosted, so everything is local now :(
+
 
     @POST("/api/login")
     fun getAuthResponse(@Body authData: AuthData): Call<AuthResponse>

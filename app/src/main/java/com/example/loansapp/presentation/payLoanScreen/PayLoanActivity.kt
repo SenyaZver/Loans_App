@@ -27,7 +27,9 @@ class PayLoanActivity : AppCompatActivity() {
         val payLoanViewModel : PayLoanViewModel by viewModels()
 
         payButton.setOnClickListener {
-            if (payEditText.text.isDigitsOnly()) {
+
+            if (payEditText.text.toString().isDigitsOnly() && payEditText.text.toString().isNotEmpty()) {
+
                 val stringPayment:String = payEditText.text.toString()
 
                 payLoanViewModel.payLoan(stringPayment.toInt())

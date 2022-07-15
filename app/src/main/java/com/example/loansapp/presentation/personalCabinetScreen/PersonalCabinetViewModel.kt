@@ -3,8 +3,8 @@ package com.example.loansapp.presentation.personalCabinetScreen
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.loansapp.LoansApp
-import com.example.loansapp.domain.LoadAllLoansUseCase
-import com.example.loansapp.domain.LoadUserDataUseCase
+import com.example.loansapp.domain.UseCases.LoadAllLoansUseCase
+import com.example.loansapp.domain.UseCases.LoadUserDataUseCase
 import com.example.loansapp.domain.entities.Loan
 import com.example.loansapp.domain.entities.User
 import com.example.loansapp.presentation.personalCabinetScreen.util.SingleLiveEvent

@@ -62,19 +62,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="135dp"
-        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/white"
         android:text="Совершить операцию"
         android:textColor="@color/main_color"
-        android:backgroundTint="@color/white"
-
-        app:strokeColor="@color/main_color"
-        app:strokeWidth="3sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:layout_editor_absoluteX="163dp" />
+        app:strokeColor="@color/main_color"
+        app:strokeWidth="3sp" />
 
     <EditText
         android:id="@+id/amountEditText"

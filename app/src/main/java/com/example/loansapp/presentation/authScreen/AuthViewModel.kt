@@ -2,11 +2,8 @@ package com.example.loansapp.presentation.authScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.loansapp.LoansApp
-import com.example.loansapp.data.CurrentAccountRepository
-import com.example.loansapp.domain.AuthenticationUseCase
+import com.example.loansapp.domain.UseCases.AuthenticationUseCase
 import com.example.loansapp.domain.entities.Status
-import com.example.loansapp.domain.entities.Account
 import kotlinx.coroutines.launch
 
 class AuthViewModel(): ViewModel() {

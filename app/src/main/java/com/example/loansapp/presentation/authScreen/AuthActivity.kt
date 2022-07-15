@@ -11,12 +11,14 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.presentation.personalCabinetScreen.PersonalCabinetActivity
+import com.example.loansapp.presentation.registrationScreen.RegistrationActivity
 
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var loginEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var authButton: Button
+    private lateinit var registrationButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,7 @@ class AuthActivity : AppCompatActivity() {
         loginEditText = findViewById(R.id.editTextLogin)
         passwordEditText = findViewById(R.id.editTextPassword)
         authButton = findViewById(R.id.authButton)
+        registrationButton = findViewById(R.id.registrationButton)
 
 
         val authViewModel: AuthViewModel by viewModels()
@@ -47,15 +50,21 @@ class AuthActivity : AppCompatActivity() {
                     this.startActivity(authIntent)
                 }
                 Status.NOT_SUCCESSFUL -> {
-                    Toast.makeText(this, "Wrong phone or password", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Wrong phone or password", Toast.LENGTH_SHORT).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }
                 Status.PHONE_IS_WRONG -> {
-                    Toast.makeText(this, "Incorrect phone number", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Incorrect phone number", Toast.LENGTH_SHORT).show()
                     authViewModel.setStatus(Status.NO_ACTION)
                 }
 
             }
+        }
+
+
+        registrationButton.setOnClickListener {
+            val intent = Intent(this, RegistrationActivity::class.java)
+            startActivity(intent)
         }
 
 

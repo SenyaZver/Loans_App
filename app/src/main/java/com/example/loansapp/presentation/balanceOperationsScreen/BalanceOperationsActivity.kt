@@ -52,8 +52,8 @@ class BalanceOperationsActivity : AppCompatActivity() {
 
 
         applyButton.setOnClickListener {
-            val amount = amountEditText.text.toString().toInt()
 
+            val amount = amountEditText.text.toString().toInt()
             val condition: Boolean = (amountEditText.text.toString() != "") && (amount <= balance)
 
             if ((chosenOperation == 1) && (condition)) {

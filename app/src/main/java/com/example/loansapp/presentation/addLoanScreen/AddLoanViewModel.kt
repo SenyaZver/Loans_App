@@ -3,7 +3,7 @@ package com.example.loansapp.presentation.addLoanScreen
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.loansapp.domain.AddLoanUseCase
+import com.example.loansapp.domain.UseCases.AddLoanUseCase
 import com.example.loansapp.domain.entities.Loan
 import kotlinx.coroutines.launch
 
