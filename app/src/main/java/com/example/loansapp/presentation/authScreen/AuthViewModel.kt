@@ -2,7 +2,7 @@ package com.example.loansapp.presentation.authScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.loansapp.domain.UseCases.AuthenticationUseCase
+import com.example.loansapp.domain.usecases.AuthenticationUseCase
 import com.example.loansapp.domain.entities.Status
 import kotlinx.coroutines.launch
 

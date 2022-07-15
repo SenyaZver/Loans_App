@@ -44,7 +44,7 @@ class AddLoanActivity : AppCompatActivity() {
 
         calculateAmountButton.setOnClickListener {
             val amount = (amountEditText.text.toString().toDouble()*1.12).toInt()
-            calculatedAmountTextView.text = "К выплате: " + amount.toString()
+            calculatedAmountTextView.text = "К выплате: " + amount.toString() + " руб."
 
         }
 
@@ -61,7 +61,7 @@ class AddLoanActivity : AppCompatActivity() {
             )
 
 
-            addLoanViewModel.addLoan(tempLoan)
+            addLoanViewModel.addLoan(tempLoan, amountEditText.text.toString().toInt())
         }
 
 

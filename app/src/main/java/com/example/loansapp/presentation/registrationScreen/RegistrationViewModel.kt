@@ -1,7 +1,7 @@
 package com.example.loansapp.presentation.registrationScreen
 
 import androidx.lifecycle.ViewModel
-import com.example.loansapp.domain.UseCases.RegistrationUseCase
+import com.example.loansapp.domain.usecases.RegistrationUseCase
 
 class RegistrationViewModel: ViewModel() {
     private lateinit var registrationUseCase: RegistrationUseCase

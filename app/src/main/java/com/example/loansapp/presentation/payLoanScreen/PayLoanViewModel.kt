@@ -1,14 +1,10 @@
 package com.example.loansapp.presentation.payLoanScreen
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.loansapp.LoansApp
-import com.example.loansapp.domain.UseCases.PayLoanUseCase
-import com.example.loansapp.domain.entities.Loan
-import kotlinx.coroutines.GlobalScope
+import com.example.loansapp.domain.usecases.PayLoanUseCase
 import kotlinx.coroutines.launch
 
 class PayLoanViewModel: ViewModel() {

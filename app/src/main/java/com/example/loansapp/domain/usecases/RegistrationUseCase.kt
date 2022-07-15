@@ -1,4 +1,4 @@
-package com.example.loansapp.domain.UseCases
+package com.example.loansapp.domain.usecases
 
 class RegistrationUseCase()
 {

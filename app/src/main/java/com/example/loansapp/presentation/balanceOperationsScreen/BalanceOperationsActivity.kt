@@ -45,7 +45,7 @@ class BalanceOperationsActivity : AppCompatActivity() {
         }
 
         balanceOperationViewModel.getUser().observe(this, Observer<User> { user ->
-            balanceTextView.text = "Баланс: " + user.balance.toString()
+            balanceTextView.text = "Баланс: " + user.balance.toString() + " руб."
             balance = user.balance
         })
 
