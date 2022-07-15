@@ -16,7 +16,6 @@
         android:background="@color/white"
         android:orientation="vertical"
 
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -144,15 +143,13 @@
         android:id="@+id/addNewLoanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
         android:layout_marginTop="636dp"
-        android:layout_marginEnd="159dp"
         android:backgroundTint="@color/white"
         android:text="Добавить"
         android:textColor="@color/main_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/main_color"
         app:strokeWidth="3sp" />
@@ -161,8 +158,6 @@
         android:id="@+id/calculateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginEnd="150dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/white"
         android:text="Рассчитать сумму к выплате"

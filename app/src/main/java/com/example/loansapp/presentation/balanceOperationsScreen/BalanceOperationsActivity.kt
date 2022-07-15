@@ -52,9 +52,9 @@ class BalanceOperationsActivity : AppCompatActivity() {
 
 
         applyButton.setOnClickListener {
-            var amount = amountEditText.text.toString().toInt()
+            val amount = amountEditText.text.toString().toInt()
 
-            var condition: Boolean = (amountEditText.text.toString() != "") && (amount <= balance)
+            val condition: Boolean = (amountEditText.text.toString() != "") && (amount <= balance)
 
             if ((chosenOperation == 1) && (condition)) {
                 balanceOperationViewModel.addMoney(amount)

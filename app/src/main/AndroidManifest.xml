@@ -14,6 +14,9 @@
         android:theme="@style/Theme.LoansApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.registrationScreen.RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.balanceOperationsScreen.BalanceOperationsActivity"
             android:exported="false" />
         <activity
