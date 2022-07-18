@@ -46,10 +46,12 @@ class PersonalCabinetActivity : AppCompatActivity() {
         personalCabinetViewModel.loanClickEvent.observe(this, Observer(::loanClicked))
 
         balanceTextView = findViewById(R.id.balanceTextView)
+        welcomeTextView = findViewById(R.id.welcomeTextView)
 
 
         personalCabinetViewModel.getUser().observe(this, Observer<User> { user->
             balanceTextView.text = "Баланс: " + user.balance.toString() + " руб."
+            welcomeTextView.text = "Здравствуйте, " + user.name
         })
 
         personalCabinetViewModel.getLoans().observe(this, Observer<ArrayList<Loan>>{ list ->

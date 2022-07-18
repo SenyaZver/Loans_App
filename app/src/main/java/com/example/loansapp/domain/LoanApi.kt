@@ -1,14 +1,9 @@
 package com.example.loansapp.domain
 
 import com.example.loansapp.domain.entities.utility.AuthData
-import com.example.loansapp.domain.responses.AuthResponse
-import com.example.loansapp.domain.responses.GetLoansResponse
-import com.example.loansapp.domain.responses.GetUserResponse
+import com.example.loansapp.domain.responses.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface LoanApi {
     //TODO finish api
@@ -21,10 +16,26 @@ interface LoanApi {
     @GET("/api/person/{personId}")
     fun getUserResponse(@Path("personId") id: Long): Call<GetUserResponse>
 
-
     @GET("/api/person/{personId}/loans")
     fun getUserLoansResponse(@Path("personId") id: Long): Call<GetLoansResponse>
 
 
+    @POST("/api/person/{idPerson}")
+    fun getRegisterResponse(@Path("idPerson") id: Long): Call<RegistrationResponse>
+
+    @POST("/api/person/{personId}/loans")
+    fun addLoanResponse(@Path("personId") id: Long): Call<AddLoanResponse>
+
+    @GET("/api/person/{personId}/loans")
+    fun getAllLoansResponse(@Path("personId") id: Long): Call<GetLoansResponse>
+
+    @POST("/api/person/{personId}/balance")
+    fun getAddBalanceResponse(@Path("personId") id: Long): Call<BalanceChangeResponse>
+
+    @PUT("/api/person/{personId}/balance")
+    fun getSubtractBalanceResponse(@Path("personId") id: Long): Call<BalanceChangeResponse>
+
+    @POST("/api/person/{personId}/loans/{loanId}/payments")
+    fun getPaymentResponse(@Path("personId") personId: Long, @Path("loanId") loanId: Long): Call<PaymentResponse>
 
 }

@@ -21,7 +21,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var registerButton: Button
 
-    //not finished
+    //not finished, this is temp version for presentation
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)

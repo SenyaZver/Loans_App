@@ -41,8 +41,8 @@ class AuthDataProvider {
         }
     }
 
-    //meh
-    private fun TESTgetResponse(phone: String, password: String): AuthResponse {
+    //test to check backend, but it wasn't hosted :(
+    private fun APIgetResponse(phone: String, password: String): AuthResponse {
         var finalResponse: AuthResponse? = null
 
         LoansApp.retrofit

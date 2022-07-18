@@ -1,6 +1,7 @@
 package com.example.loansapp.presentation.registrationScreen
 
 import androidx.lifecycle.ViewModel
+import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.domain.usecases.RegistrationUseCase
 
 class RegistrationViewModel: ViewModel() {
@@ -13,10 +14,11 @@ class RegistrationViewModel: ViewModel() {
         passportSeries: Int,
         passportNumber: Int,
         email: String,
-        pts: String)
+        pts: String): Status
     {
         registrationUseCase = RegistrationUseCase()
-        registrationUseCase.execute(login, password, name, passportSeries, passportNumber, email, pts)
+        val status = registrationUseCase.execute(login, password, name, passportSeries, passportNumber, email, pts)
+        return status
     }
 
 

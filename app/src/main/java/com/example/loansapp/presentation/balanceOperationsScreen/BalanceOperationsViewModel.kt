@@ -2,9 +2,10 @@ package com.example.loansapp.presentation.balanceOperationsScreen
 
 import androidx.lifecycle.*
 import com.example.loansapp.LoansApp
+import com.example.loansapp.domain.entities.User
 import com.example.loansapp.domain.usecases.AddMoneyUseCase
 import com.example.loansapp.domain.usecases.SubtractMoneyUseCase
-import com.example.loansapp.domain.entities.User
+
 import kotlinx.coroutines.launch
 
 class BalanceOperationsViewModel: ViewModel() {

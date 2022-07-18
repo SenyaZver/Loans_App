@@ -22,8 +22,8 @@ class UserDataProvider(private val id: Long) {
     private fun getResponse(id:Long): GetUserResponse {
         val user = User(
             1,
-            "Arseny",
-            "Stuchinsky",
+            "Арсений",
+            "Стучинский",
             null,
             10000,
             1255,

@@ -4,14 +4,14 @@ import com.example.loansapp.LoansApp
 import com.example.loansapp.domain.entities.Loan
 import com.example.loansapp.domain.entities.Status
 import com.example.loansapp.domain.responses.GetLoansResponse
-import com.example.loansapp.domain.responses.GetUserResponse
 
 class LoansDataProvider(private val id: Long){
 
     //temp Solution
     fun provide(): Status {
 
-        val response = loadLoansList(id)
+        val response = getResponse(id)
+
         if (response.loansList != null) {
             LoansApp.loansRepository.setLoansList(response.loansList)
             return Status.SUCCESSFUL
@@ -22,7 +22,7 @@ class LoansDataProvider(private val id: Long){
     }
 
     //temp Solution
-    private fun loadLoansList(id:Long): GetLoansResponse {
+    private fun getResponse(id:Long): GetLoansResponse {
         val loansList = ArrayList<Loan>()
 
         loansList.add(Loan(
@@ -39,7 +39,7 @@ class LoansDataProvider(private val id: Long){
             5000,
             4060,
             12.0,
-            "17-07-2033",
+            "17-07-2022",
             "31-08-2022"))
         loansList.add(Loan(
             3,

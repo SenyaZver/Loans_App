@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.example.loansapp.LoansApp
 import com.example.loansapp.R
 import com.example.loansapp.domain.entities.Loan
+import com.example.loansapp.domain.entities.utility.AddLoanData
 import com.example.loansapp.presentation.personalCabinetScreen.PersonalCabinetActivity
 
 class AddLoanActivity : AppCompatActivity() {
@@ -49,19 +50,14 @@ class AddLoanActivity : AppCompatActivity() {
         }
 
         addLoanButton.setOnClickListener {
-            val tempId = LoansApp.loansRepository.getLoansList().size.toLong() + 1
-            val tempLoan = Loan(
-                tempId,
-                nameEditText.text.toString(),
-                (amountEditText.text.toString().toDouble()*1.12).toInt(),
-                (amountEditText.text.toString().toDouble()*1.12).toInt(),
-                12.0,
-                "15-07-2022",
-                dateEditText.text.toString()
+
+            val data = AddLoanData(
+                (amountEditText.text.toString().toDouble()).toInt(),
+                dateEditText.text.toString(),nameEditText.text.toString()
             )
 
 
-            addLoanViewModel.addLoan(tempLoan, amountEditText.text.toString().toInt())
+            addLoanViewModel.addLoan(data)
         }
 
 
